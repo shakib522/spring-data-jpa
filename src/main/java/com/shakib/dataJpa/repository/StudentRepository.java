@@ -3,6 +3,7 @@ package com.shakib.dataJpa.repository;
 import com.shakib.dataJpa.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -24,4 +25,10 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
             nativeQuery = true
     )
     Student getStudentByEmailAddressNative(String email_address);
+
+    @Query(
+            value = "SELECT * FROM tbl_student where email_address = :emailId",
+            nativeQuery = true
+    )
+    Student getStudentByEmailAddressNativeNamedParam(@Param("emailId")String emailId);
 }
