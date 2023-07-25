@@ -89,4 +89,10 @@ class StudentRepositoryTest {
         System.out.println("student = "+student);
     }
 
+    @Test
+    public void updateStudentNameByEmailId(){
+        int row = studentRepository.updateStudentNameByEmailId("hasan","akash@gmail.com");
+        System.out.println("student = "+row);
+    }
+
 }
