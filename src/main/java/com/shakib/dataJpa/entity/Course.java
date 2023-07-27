@@ -1,5 +1,6 @@
 package com.shakib.dataJpa.entity;
 
+import com.shakib.dataJpa.repository.CourseMaterialRepository;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,5 +27,10 @@ public class Course {
     private Long courseId;
     private String title;
     private Integer credit;
+
+    @OneToOne(
+            mappedBy = "course"
+    )
+    private CourseMaterial courseMaterial;
 
 }
