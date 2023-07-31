@@ -1,6 +1,7 @@
 package com.shakib.dataJpa.repository;
 
 import com.shakib.dataJpa.entity.Course;
+import com.shakib.dataJpa.entity.Student;
 import com.shakib.dataJpa.entity.Teacher;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,5 +88,28 @@ class CourseRepositoryTest {
         List<Course> courses = courseRepository.findByTitleContaining("D",firstPageTenRecords).getContent();
 
         System.out.println("courses = " + courses);
+    }
+
+    @Test
+    public void saveCourseWithStudentAndTeacher(){
+        Teacher teacher=Teacher.builder()
+                .firstName("Nicola")
+                .lastName("Tesla")
+                .build();
+
+        Student student=Student.builder()
+                .firstName("Saiham")
+                .lastName("Shahnewaz")
+                .emailId("saiham@gmail.com")
+                .build();
+
+        Course course=Course.builder()
+                .title("Ruby on Rails")
+                .credit(4)
+                .teacher(teacher)
+                .build();
+
+        course.addStudent(student);
+        courseRepository.save(course);
     }
 }
